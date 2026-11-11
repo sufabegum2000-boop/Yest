@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madrasha Hub</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #090d18;
+    color: white;
+}
+
+header {
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #20283a;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #9b8cff;
+}
+
+.logo span {
+    color: white;
+}
+
+nav a {
+    color: #aab2c5;
+    text-decoration: none;
+    margin-left: 22px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #9b8cff;
+}
+
+.container {
+    padding: 40px 7%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.welcome {
+    background: linear-gradient(120deg, #252052, #111b35);
+    padding: 40px;
+    border-radius: 18px;
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.welcome p {
+    color: #c2c5d7;
+    line-height: 1.7;
+}
+
+.tag {
+    display: inline-block;
+    background: #39316e;
+    color: #c4baff;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    margin: 30px 0 18px;
+    font-size: 21px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: #121a2a;
+    border: 1px solid #263148;
+    padding: 23px;
+    border-radius: 14px;
+}
+
+.card h2 {
+    color: #a99aff;
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #9ba6bb;
+    font-size: 14px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+}
+
+.update {
+    background: #121a2a;
+    border: 1px solid #263148;
+    padding: 20px;
+    border-radius: 13px;
+    margin-bottom: 13px;
+}
+
+.update h3 {
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.update p {
+    color: #aab2c5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.date {
+    color: #9b8cff;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.friend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #263148;
+}
+
+.friend:last-child {
+    border: none;
+}
+
+.status {
+    color: #55d99a;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #68748a;
+    border-top: 1px solid #20283a;
+    font-size: 12px;
+}
+
+button {
+    background: #8874f5;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #705be0;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    .container {
+        padding: 25px 5%;
+    }
+
+    .welcome {
+        padding: 25px;
+    }
+
+    .welcome h1 {
+        font-size: 25px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Madrasha<span>Hub.</span></div>
+
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('friends')">Friends</a>
+        <a onclick="showPage('updates')">Updates</a>
+        <a onclick="showPage('events')">Events</a>
+    </nav>
+</header>
+
+<main class="container">
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+
+    <section class="welcome">
+        <span class="tag">PRIVATE COMMUNITY</span>
+        <h1>Welcome to Madrasha Hub 👋</h1>
+        <p>
+            Your private space for friends, memories,
+            updates and everything about our Madrasha.
+        </p>
+        <button onclick="showPage('friends')">Explore Friends →</button>
+    </section>
+
+    <h2 class="section-title">Our Dashboard</h2>
+
+    <div class="stats">
+        <div class="card">
+            <h2 id="totalFriends">25</h2>
+            <p>Total Friends</p>
+        </div>
+
+        <div class="card">
+            <h2>08</h2>
+            <p>Upcoming Events</p>
+        </div>
+
+        <div class="card">
+            <h2>12</h2>
+            <p>Latest Updates</p>
+        </div>
+    </div>
+
+    <div class="content-grid">
+
+        <section>
+            <h2 class="section-title">Latest Updates</h2>
+
+            <div class="update">
+                <div class="date">NOVEMBER 11, 2026</div>
+                <h3>Welcome to Madrasha Hub!</h3>
+                <p>Our private friends community website is now ready for its first demo.</p>
+            </div>
+
+            <div class="update">
+                <div class="date">COMMUNITY NEWS</div>
+                <h3>Stay Connected</h3>
+                <p>Keep in touch with your friends and share your memories.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Friends Online</h2>
+
+            <div class="card">
+                <div class="friend">
+                    <span>Mahir</span>
+                    <span class="status">● Online</span>
+                </div>
+
+                <div class="friend">
+                    <span>Friend 02</span>
+                    <span class="status">● Online</span>
+                </div>
+
+                <div class="friend">
+                    <span>Friend 03</span>
+                    <span class="status">● Online</span>
+                </div>
+
+                <div class="friend">
+                    <span>Friend 04</span>
+                    <span style="color:#8892a5">Offline</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- FRIENDS PAGE -->
+<div id="friends" class="page">
+    <h1>Our Friends 👥</h1>
+    <p style="color:#9ba6bb;margin-top:10px">
+        The people who make our community special.
+    </p>
+
+    <h2 class="section-title">Friends List</h2>
+
+    <div class="stats">
+        <div class="card"><h2>Mahir</h2><p>Member</p></div>
+        <div class="card"><h2>Friend 02</h2><p>Member</p></div>
+        <div class="card"><h2>Friend 03</h2><p>Member</p></div>
+        <div class="card"><h2>Friend 04</h2><p>Member</p></div>
+        <div class="card"><h2>Friend 05</h2><p>Member</p></div>
+        <div class="card"><h2>Friend 06</h2><p>Member</p></div>
+    </div>
+</div>
+
+<!-- UPDATES PAGE -->
+<div id="updates" class="page">
+    <h1>Community Updates 📢</h1>
+
+    <div class="update" style="margin-top:25px">
+        <div class="date">LATEST</div>
+        <h3>Madrasha Hub Launched!</h3>
+        <p>Welcome everyone to our new private community.</p>
+    </div>
+
+    <div class="update">
+        <div class="date">COMMUNITY</div>
+        <h3>Stay Connected</h3>
+        <p>Check the website regularly for new updates.</p>
+    </div>
+</div>
+
+<!-- EVENTS PAGE -->
+<div id="events" class="page">
+    <h1>Upcoming Events 📅</h1>
+
+    <div class="update" style="margin-top:25px">
+        <h3>Friends Meetup</h3>
+        <p>Date: To be announced</p>
+    </div>
+
+    <div class="update">
+        <h3>Sports Day</h3>
+        <p>Date: To be announced</p>
+    </div>
+
+    <div class="update">
+        <h3>Friends Hangout</h3>
+        <p>Date: To be announced</p>
+    </div>
+</div>
+
+</main>
+
+<footer>
+    <p>Madrasha Hub © 2026</p>
+    <p style="margin-top:8px">Private Friends Project • Not Official</p>
+</footer>
+
+<script>
+function showPage(pageName) {
+
+    let pages = document.querySelectorAll('.page');
+
+    pages.forEach(function(page) {
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageName).classList.add('active');
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+</body>
+</html>
