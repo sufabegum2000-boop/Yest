@@ -3,475 +3,700 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090914">
-<title>URGAMES — Play Everything</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+<meta name="theme-color" content="#f8f9fc">
+<title>OUR TOOLS — All Your Tools, One Place</title>
 
-:root {
-  --bg:#090914;
-  --panel:#111121;
-  --card:#151528;
-  --purple:#8b5cf6;
-  --blue:#6366f1;
-  --text:#f5f3ff;
-  --muted:#9695ad;
-  --border:rgba(255,255,255,.08);
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+ --bg:#f8f9fc;
+ --surface:#ffffff;
+ --surface2:#f1f3f8;
+ --text:#171925;
+ --muted:#85899a;
+ --border:#e9eaf0;
+ --accent:#6755df;
+ --accent-soft:#efedff;
+ --shadow:0 5px 25px rgba(24,24,50,.045);
+ --radius:15px;
+}
+body.dark{
+ --bg:#101116;
+ --surface:#191b23;
+ --surface2:#222530;
+ --text:#f4f4fa;
+ --muted:#9b9dac;
+ --border:#2c2e39;
+ --accent:#a397ff;
+ --accent-soft:#302b4d;
+ --shadow:0 5px 25px rgba(0,0,0,.15);
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
  margin:0;background:var(--bg);color:var(--text);
- font-family:Inter,Arial,sans-serif;
- min-height:100vh;
+ font-family:'DM Sans',sans-serif;
+ transition:background .3s,color .3s;
+ -webkit-font-smoothing:antialiased;
 }
-button,input{font:inherit}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-header{
- height:75px;display:flex;align-items:center;
- justify-content:space-between;padding:0 6%;
+a{color:inherit;text-decoration:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible{
+ outline:2px solid var(--accent);outline-offset:3px;
+}
+.topbar{
+ height:72px;background:var(--surface);
  border-bottom:1px solid var(--border);
- position:sticky;top:0;background:rgba(9,9,20,.92);
- backdrop-filter:blur(18px);z-index:10;
+ position:sticky;top:0;z-index:20;
+ display:flex;align-items:center;
+ transition:background .3s;
 }
-.logo{font-size:25px;font-weight:900;letter-spacing:-1.5px}
-.logo span{color:var(--purple)}
-.nav{display:flex;gap:25px;align-items:center}
-.nav a{color:var(--muted);text-decoration:none;font-size:13px}
-.nav a:hover{color:white}
-.nav button,.primary{
- border:0;background:linear-gradient(120deg,#8b5cf6,#6366f1);
- color:white;padding:11px 18px;border-radius:10px;font-weight:700;
+.nav{
+ width:min(1160px,92%);margin:auto;
+ display:flex;align-items:center;justify-content:space-between;
 }
-.menu{display:none;background:none;color:white;border:0;font-size:24px}
+.brand{
+ font-family:Manrope,sans-serif;font-size:21px;
+ font-weight:800;letter-spacing:-1.2px;
+}
+.brand span{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:13px}
+.icon-btn{
+ width:39px;height:39px;border:1px solid var(--border);
+ background:var(--surface);color:var(--text);
+ border-radius:11px;display:grid;place-items:center;
+ transition:background .2s,border-color .2s,transform .2s;
+}
+.icon-btn:hover{background:var(--surface2)}
+.icon-btn:active{transform:scale(.92)}
 .hero{
- padding:85px 20px 65px;text-align:center;
- background:radial-gradient(ellipse at 50% 0%,#38206a55,transparent 65%);
+ max-width:900px;margin:auto;text-align:center;
+ padding:90px 20px 55px;
 }
-.tag{
- display:inline-block;border:1px solid #8b5cf655;
- background:#8b5cf618;color:#bba1ff;
- padding:8px 15px;border-radius:30px;font-size:11px;
- letter-spacing:1px;font-weight:700;
+.eyebrow{
+ color:var(--accent);font-size:11px;font-weight:800;
+ letter-spacing:2px;text-transform:uppercase;
 }
 .hero h1{
- font-size:clamp(45px,8vw,82px);
- line-height:1.04;margin:24px 0 15px;
- letter-spacing:-5px;font-weight:900;
+ font-family:Manrope,sans-serif;
+ font-size:clamp(38px,6vw,64px);
+ line-height:1.12;letter-spacing:-3px;
+ margin:18px 0 13px;font-weight:800;
 }
-.hero h1 span{
- background:linear-gradient(90deg,#a78bfa,#6366f1,#c084fc);
- -webkit-background-clip:text;color:transparent;
+.hero h1 span{color:var(--accent)}
+.hero p{
+ color:var(--muted);font-size:15px;line-height:1.8;
+ margin:0;
 }
-.hero p{color:var(--muted);font-size:15px;line-height:1.7}
-.search{
- max-width:550px;margin:30px auto 0;position:relative;
+.search-wrap{
+ max-width:590px;margin:30px auto 0;position:relative;
 }
-.search input{
- width:100%;padding:17px 20px 17px 48px;
- background:#17172a;border:1px solid var(--border);
- border-radius:14px;color:white;outline:none;
+.search-wrap input{
+ width:100%;height:56px;padding:0 50px 0 48px;
+ border:1px solid var(--border);border-radius:13px;
+ background:var(--surface);color:var(--text);
+ font-size:14px;box-shadow:var(--shadow);
+ transition:border-color .2s,box-shadow .2s;
 }
-.search input:focus{border-color:var(--purple)}
-.search span{position:absolute;left:17px;top:15px}
-.container{max-width:1200px;margin:auto;padding:0 25px 70px}
-.section-head{
- display:flex;justify-content:space-between;align-items:center;
- margin:35px 0 20px;gap:15px;flex-wrap:wrap;
+.search-wrap input:focus{
+ outline:none;border-color:var(--accent);
+ box-shadow:0 0 0 4px var(--accent-soft);
 }
-.section-head h2{font-size:21px;margin:0}
-.section-head p{font-size:12px;color:var(--muted)}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
-.filter{
- border:1px solid var(--border);background:var(--panel);
- color:var(--muted);padding:9px 15px;border-radius:30px;
- font-size:12px;
+.search-icon{
+ position:absolute;left:17px;top:17px;color:var(--muted);
+ font-size:19px;pointer-events:none;
 }
-.filter.active,.filter:hover{
- background:#8b5cf622;color:#c4b5fd;border-color:#8b5cf6;
+.search-hint{
+ position:absolute;right:13px;top:17px;
+ color:var(--muted);font-size:11px;
+}
+.container{width:min(1160px,92%);margin:auto}
+.quick-info{
+ display:flex;justify-content:center;gap:35px;
+ flex-wrap:wrap;margin-top:27px;
+ color:var(--muted);font-size:12px;
+}
+.quick-info span{display:flex;align-items:center;gap:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:#39b980}
+.content{padding:20px 0 75px}
+.section-heading{
+ display:flex;justify-content:space-between;
+ align-items:end;gap:15px;margin:25px 0 18px;
+}
+.section-heading h2{
+ font-family:Manrope,sans-serif;font-size:21px;
+ letter-spacing:-.7px;margin:0;
+}
+.section-heading p{font-size:12px;color:var(--muted);margin:6px 0 0}
+.categories{
+ display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px;
+}
+.category{
+ padding:9px 15px;border:1px solid var(--border);
+ background:var(--surface);color:var(--muted);
+ border-radius:9px;font-size:12px;font-weight:600;
+ transition:background .2s,color .2s,border-color .2s;
+}
+.category:hover{border-color:var(--accent);color:var(--accent)}
+.category.active{
+ background:var(--accent-soft);color:var(--accent);
+ border-color:transparent;
 }
 .grid{
- display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+ display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
 }
-.game-card{
- background:var(--card);border:1px solid var(--border);
- border-radius:17px;overflow:hidden;transition:.25s;
+.tool-card{
+ background:var(--surface);border:1px solid var(--border);
+ border-radius:var(--radius);padding:19px;
+ min-height:157px;position:relative;
+ transition:transform .25s cubic-bezier(.2,.8,.2,1),
+ border-color .25s,box-shadow .25s;
+ cursor:pointer;
 }
-.game-card:hover{
- transform:translateY(-6px);border-color:#8b5cf688;
- box-shadow:0 12px 35px #0005;
+.tool-card:hover{
+ transform:translateY(-4px);
+ border-color:#aaa0ef;
+ box-shadow:var(--shadow);
 }
-.game-art{
- height:145px;display:grid;place-items:center;
- font-size:60px;position:relative;
- background:linear-gradient(135deg,#35205b,#17172e);
+.tool-card:active{transform:scale(.98)}
+.tool-icon{
+ width:43px;height:43px;border-radius:12px;
+ background:var(--accent-soft);
+ display:grid;place-items:center;
+ font-size:21px;margin-bottom:15px;
 }
-.game-art.pink{background:linear-gradient(135deg,#662d51,#24152e)}
-.game-art.blue{background:linear-gradient(135deg,#174b72,#161a36)}
-.game-art.orange{background:linear-gradient(135deg,#81421d,#32202b)}
-.game-art.green{background:linear-gradient(135deg,#155d4a,#192b31)}
-.game-art.gold{background:linear-gradient(135deg,#745319,#30202d)}
-.game-info{padding:15px}
-.game-info h3{font-size:14px;margin:0 0 7px}
-.game-info p{font-size:11px;color:var(--muted);margin:0 0 15px}
-.card-bottom{display:flex;align-items:center;justify-content:space-between}
-.category{font-size:10px;color:#bba1ff}
-.play{
- background:#8b5cf6;color:white;border:0;
- padding:8px 15px;border-radius:8px;font-size:11px;font-weight:700;
+.tool-card h3{font-size:14px;margin:0 0 7px;font-weight:700}
+.tool-card p{
+ font-size:11px;color:var(--muted);line-height:1.6;margin:0;
 }
-.play:hover{background:#7041dc}
-.favorite{
- border:0;background:transparent;color:#aaa;font-size:20px;
+.tool-star{
+ position:absolute;right:14px;top:14px;
+ border:0;background:none;color:var(--muted);
+ font-size:18px;padding:4px;
 }
-.favorite.on{color:#ff668b}
+.tool-star.active{color:#e5a23b}
 .empty{
- grid-column:1/-1;text-align:center;padding:50px;
- color:var(--muted);
+ grid-column:1/-1;text-align:center;
+ padding:65px 20px;color:var(--muted);
+}
+.empty strong{display:block;color:var(--text);margin-bottom:8px}
+.bottom-note{
+ text-align:center;color:var(--muted);
+ font-size:12px;padding:25px 0 0;
 }
 footer{
  border-top:1px solid var(--border);
- padding:30px;text-align:center;color:var(--muted);font-size:12px;
+ padding:30px 15px;text-align:center;
+ color:var(--muted);font-size:12px;
 }
-footer b{color:#a78bfa}
+footer strong{color:var(--text)}
+/* Modal */
 .modal{
- position:fixed;inset:0;background:#000c;z-index:20;
- display:none;align-items:center;justify-content:center;padding:15px;
+ position:fixed;inset:0;z-index:50;
+ background:rgba(10,10,20,.5);
+ backdrop-filter:blur(5px);
+ display:none;align-items:center;justify-content:center;
+ padding:16px;
 }
-.modal.show{display:flex;animation:fade .2s}
+.modal.open{display:flex;animation:fade .2s ease}
 .dialog{
- background:#121222;border:1px solid var(--border);
- border-radius:20px;width:min(550px,100%);
- padding:25px;max-height:90vh;overflow:auto;
- animation:pop .25s;
+ width:min(650px,100%);max-height:88vh;overflow:auto;
+ background:var(--surface);border:1px solid var(--border);
+ border-radius:19px;padding:25px;
+ box-shadow:0 20px 70px #0003;
+ animation:enter .25s cubic-bezier(.2,.8,.2,1);
 }
-.dialog-head{display:flex;justify-content:space-between;align-items:center}
-.dialog-head h2{font-size:19px}
-.close{background:#27273a;color:white;border:0;border-radius:8px;padding:8px 12px}
-.game-area{text-align:center;padding:25px 5px;min-height:220px}
-.game-area button{
- background:var(--purple);border:0;color:white;
- padding:11px 17px;border-radius:9px;margin:6px;
+.dialog-head{
+ display:flex;align-items:center;justify-content:space-between;
+ padding-bottom:17px;border-bottom:1px solid var(--border);
+ margin-bottom:20px;
 }
-.game-area input{
- background:#202036;color:white;border:1px solid #444;
- padding:12px;border-radius:9px;width:120px;
+.dialog-title{display:flex;align-items:center;gap:12px}
+.dialog-title .tool-icon{margin:0}
+.dialog-title h2{font-size:18px;margin:0}
+.close-btn{
+ background:var(--surface2);color:var(--text);
+ border:0;width:34px;height:34px;border-radius:9px;
 }
-.game-area .big{font-size:42px;margin:20px}
-.game-area p{color:var(--muted);line-height:1.7}
-.game-area .cells{
- display:grid;grid-template-columns:repeat(3,80px);
- justify-content:center;gap:7px;margin:20px auto;
+.tool-content{min-height:200px}
+.tool-content label{
+ display:block;font-size:12px;font-weight:700;
+ margin:14px 0 7px;
 }
-.cells button{
- height:75px;font-size:27px;background:#24243c;
- border:1px solid var(--border);
+.field,.tool-content textarea,.tool-content select{
+ width:100%;padding:12px 13px;
+ background:var(--bg);color:var(--text);
+ border:1px solid var(--border);border-radius:10px;
+ font-size:13px;outline:none;
+ transition:border-color .2s,box-shadow .2s;
 }
-.memory{
- display:grid;grid-template-columns:repeat(4,65px);
- justify-content:center;gap:8px;margin:20px auto;
+.field:focus,.tool-content textarea:focus{
+ border-color:var(--accent);
+ box-shadow:0 0 0 3px var(--accent-soft);
 }
-.memory button{height:65px;font-size:23px;background:#282342}
+.tool-content textarea{min-height:115px;resize:vertical}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.btn{
+ padding:10px 16px;border-radius:9px;border:1px solid var(--border);
+ background:var(--surface2);color:var(--text);
+ font-size:12px;font-weight:700;
+ transition:transform .15s,background .2s;
+}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.result{
+ background:var(--surface2);padding:13px;
+ border-radius:10px;margin-top:14px;
+ font-size:13px;line-height:1.7;
+ overflow-wrap:anywhere;min-height:40px;
+}
+.muted{font-size:12px;color:var(--muted);line-height:1.7}
+.stat{
+ display:flex;justify-content:space-between;
+ padding:12px 0;border-bottom:1px solid var(--border);
+ font-size:13px;
+}
+.stat b{color:var(--accent)}
+.tool-content input[type="color"]{
+ width:100%;height:48px;border:0;background:transparent;
+ cursor:pointer;
+}
+canvas{max-width:100%;border-radius:9px}
+.preview{max-width:100%;display:block;margin:15px auto}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes pop{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
-@media(max-width:850px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){
- header{padding:0 18px}
- .nav{display:none;position:absolute;top:75px;left:0;right:0;
- background:#111121;padding:20px;flex-direction:column}
- .nav.open{display:flex}
- .menu{display:block}
- .hero{padding:65px 15px 45px}
- .hero h1{letter-spacing:-3px}
- .container{padding:0 15px 50px}
- .grid{grid-template-columns:repeat(2,1fr);gap:11px}
- .game-art{height:110px;font-size:45px}
- .game-info{padding:11px}
- .game-info h3{font-size:12px}
- .play{padding:8px 10px}
+@keyframes enter{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){
+ .hero{padding:65px 18px 40px}
+ .hero h1{letter-spacing:-2px}
+ .hero p{font-size:13px}
+ .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+ .tool-card{padding:14px;min-height:150px}
+ .tool-icon{width:39px;height:39px}
+ .quick-info{gap:15px;font-size:10px}
+ .dialog{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  scroll-behavior:auto!important;
+  animation-duration:.01ms!important;
+  transition-duration:.01ms!important;
+ }
 }
 </style>
 </head>
-<body>
 
-<header>
- <div class="logo">UR<span>GAMES</span></div>
- <nav class="nav" id="nav">
-  <a href="#">Home</a>
-  <a href="#games">Games</a>
-  <a href="#about">About</a>
-  <button onclick="showFavorites()">♥ Favorites</button>
- </nav>
- <button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+<body>
+<header class="topbar">
+ <div class="nav">
+  <a class="brand" href="#">OUR <span>TOOLS.</span></a>
+  <div class="nav-right">
+   <button class="icon-btn" title="Favorites" onclick="showFavorites()">♡</button>
+   <button class="icon-btn" title="Toggle theme" onclick="toggleTheme()" id="themeBtn">☾</button>
+  </div>
+ </div>
 </header>
 
 <section class="hero">
- <div class="tag">✦ YOUR FREE GAMING DESTINATION</div>
- <h1>PLAY MORE.<br><span>WORRY LESS.</span></h1>
- <p>Discover fun games. Challenge yourself.<br>Play anytime, anywhere.</p>
- <div class="search">
-  <span>🔎</span>
-  <input id="search" placeholder="Search your favorite games..." oninput="renderGames()">
+ <div class="eyebrow">SIMPLE · USEFUL · FREE</div>
+ <h1>All your tools.<br><span>One place.</span></h1>
+ <p>Useful online tools to make your everyday work easier.<br>No unnecessary complications.</p>
+
+ <div class="search-wrap">
+  <span class="search-icon">⌕</span>
+  <input id="search" placeholder="Search for a tool..." autocomplete="off">
+  <span class="search-hint">SEARCH</span>
+ </div>
+
+ <div class="quick-info">
+  <span><i class="dot"></i> Free to use</span>
+  <span>✦ No account required</span>
+  <span>⌘ Works in your browser</span>
  </div>
 </section>
 
-<main class="container" id="games">
- <div class="section-head">
+<main class="container content">
+ <div class="section-heading">
   <div>
-   <h2 id="heading">Explore Games 🎮</h2>
-   <p>Pick a game and start playing!</p>
+   <h2 id="heading">Explore tools</h2>
+   <p id="subheading">Everything you need, neatly organized.</p>
   </div>
-  <p id="count">6 GAMES</p>
+  <span class="muted" id="total"></span>
  </div>
 
- <div class="filters">
-  <button class="filter active" onclick="setCategory('All',this)">All Games</button>
-  <button class="filter" onclick="setCategory('Puzzle',this)">🧩 Puzzle</button>
-  <button class="filter" onclick="setCategory('Arcade',this)">👾 Arcade</button>
-  <button class="filter" onclick="setCategory('Casual',this)">🎯 Casual</button>
- </div>
-
+ <div class="categories" id="categories"></div>
  <div class="grid" id="grid"></div>
+ <div class="bottom-note">More useful tools are on the way.</div>
 </main>
 
-<section class="container" id="about">
- <div class="section-head">
-  <h2>About URGAMES</h2>
- </div>
- <p style="color:#9695ad;font-size:13px;line-height:1.9">
- URGAMES is a simple gaming destination where everyone can discover
- and enjoy browser games. No downloads needed for our built-in games.
- </p>
-</section>
-
 <footer>
- <div class="logo">UR<span>GAMES</span></div>
- <p>Play Everything. Enjoy Every Moment.</p>
- © 2026 URGAMES. Made for gamers.
+ <strong>OUR TOOLS.</strong><br><br>
+ All your tools, one place.<br><br>
+ © 2026 OUR TOOLS. Built with care.
 </footer>
 
-<div class="modal" id="modal" onclick="if(event.target===this)closeGame()">
+<div class="modal" id="modal">
  <div class="dialog">
   <div class="dialog-head">
-   <h2 id="gameTitle">Game</h2>
-   <button class="close" onclick="closeGame()">✕</button>
+   <div class="dialog-title">
+    <div class="tool-icon" id="modalIcon">✦</div>
+    <h2 id="modalTitle">Tool</h2>
+   </div>
+   <button class="close-btn" onclick="closeTool()">✕</button>
   </div>
-  <div class="game-area" id="gameArea"></div>
+  <div class="tool-content" id="toolContent"></div>
  </div>
 </div>
 
 <script>
-const games=[
- {id:1,name:"Tic Tac Toe",desc:"Challenge yourself or a friend.",cat:"Puzzle",icon:"❌",color:"pink"},
- {id:2,name:"Memory Match",desc:"Find all matching pairs.",cat:"Puzzle",icon:"🧠",color:"blue"},
- {id:3,name:"Number Guess",desc:"Can you guess the number?",cat:"Casual",icon:"🔢",color:"orange"},
- {id:4,name:"Reaction Test",desc:"Test your reaction speed.",cat:"Arcade",icon:"⚡",color:"green"},
- {id:5,name:"Rock Paper Scissors",desc:"Beat the computer!",cat:"Casual",icon:"✊",color:"gold"},
- {id:6,name:"Click Challenge",desc:"How many clicks in 10 seconds?",cat:"Arcade",icon:"👆",color:""}
+const $=id=>document.getElementById(id);
+
+const tools=[
+ {id:"word",name:"Word Counter",desc:"Count words and characters.",icon:"📝",cat:"Text"},
+ {id:"case",name:"Case Converter",desc:"Change text capitalization.",icon:"🔠",cat:"Text"},
+ {id:"remove",name:"Remove Extra Spaces",desc:"Clean up messy text.",icon:"🧹",cat:"Text"},
+ {id:"reverse",name:"Text Reverser",desc:"Reverse any text instantly.",icon:"↩️",cat:"Text"},
+ {id:"duplicate",name:"Duplicate Lines",desc:"Find repeated lines in text.",icon:"📋",cat:"Text"},
+ {id:"calc",name:"Calculator",desc:"Perform basic calculations.",icon:"🧮",cat:"Calculator"},
+ {id:"percent",name:"Percentage Calculator",desc:"Calculate percentages easily.",icon:"％",cat:"Calculator"},
+ {id:"unit",name:"Unit Converter",desc:"Convert common measurements.",icon:"📏",cat:"Calculator"},
+ {id:"json",name:"JSON Formatter",desc:"Format and validate JSON.",icon:"{ }",cat:"Developer"},
+ {id:"base64",name:"Base64 Converter",desc:"Encode and decode text.",icon:"🔐",cat:"Developer"},
+ {id:"url",name:"URL Encoder",desc:"Encode and decode URLs.",icon:"🔗",cat:"Developer"},
+ {id:"html",name:"HTML Preview",desc:"Preview your HTML code.",icon:"🌐",cat:"Developer"},
+ {id:"color",name:"Color Picker",desc:"Pick and copy color codes.",icon:"🎨",cat:"Design"},
+ {id:"gradient",name:"Gradient Generator",desc:"Create CSS gradients.",icon:"🌈",cat:"Design"},
+ {id:"image",name:"Image Resizer",desc:"Resize and download images.",icon:"🖼️",cat:"Image"},
+ {id:"compress",name:"Image Compressor",desc:"Reduce image file size.",icon:"📦",cat:"Image"},
+ {id:"qr",name:"QR Generator",desc:"Create QR codes from text or links.",icon:"▦",cat:"Other"},
+ {id:"stopwatch",name:"Stopwatch",desc:"Track time with precision.",icon:"⏱️",cat:"Other"},
+ {id:"timer",name:"Countdown Timer",desc:"Set your own countdown.",icon:"⏳",cat:"Other"},
+ {id:"password",name:"Password Generator",desc:"Generate random passwords.",icon:"🔑",cat:"Other"},
+ {id:"date",name:"Age Calculator",desc:"Calculate age from birth date.",icon:"🎂",cat:"Other"},
+ {id:"lorem",name:"Lorem Ipsum",desc:"Generate placeholder text.",icon:"📄",cat:"Text"}
 ];
 
-let category="All";
-let favorites=JSON.parse(localStorage.getItem("urgames-favs")||"[]");
-let favOnly=false;
+const cats=["All","Text","Calculator","Developer","Design","Image","Other"];
+let activeCat="All";
+let favorites=JSON.parse(localStorage.getItem("ot-favorites")||"[]");
+let favoriteMode=false;
+let currentTool=null;
 
-function renderGames(){
- const query=document.getElementById("search").value.toLowerCase();
- const list=games.filter(g=>
-  (category==="All"||g.cat===category)&&
-  (!favOnly||favorites.includes(g.id))&&
-  (g.name.toLowerCase().includes(query)||g.cat.toLowerCase().includes(query))
+function renderCategories(){
+ $("categories").innerHTML=cats.map(c=>
+ `<button class="category ${activeCat===c&&!favoriteMode?"active":""}" onclick="setCategory('${c}')">${c}</button>`
+ ).join("");
+}
+function render(){
+ let q=$("search").value.toLowerCase();
+ let list=tools.filter(t=>
+ (activeCat==="All"||t.cat===activeCat)&&
+ (!favoriteMode||favorites.includes(t.id))&&
+ (t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q))
  );
- document.getElementById("heading").textContent=favOnly?"Your Favorites ♥":"Explore Games 🎮";
- document.getElementById("count").textContent=list.length+" GAMES";
- document.getElementById("grid").innerHTML=list.length?list.map(g=>`
-  <article class="game-card">
-   <div class="game-art ${g.color}">${g.icon}</div>
-   <div class="game-info">
-    <h3>${g.name}</h3>
-    <p>${g.desc}</p>
-    <div class="card-bottom">
-     <span class="category">${g.cat}</span>
-     <div>
-      <button class="favorite ${favorites.includes(g.id)?"on":""}" onclick="toggleFav(${g.id})">${favorites.includes(g.id)?"♥":"♡"}</button>
-      <button class="play" onclick="playGame(${g.id})">PLAY ▶</button>
-     </div>
-    </div>
-   </div>
-  </article>`).join(""):`<div class="empty">No games found. Try another search!</div>`;
+ $("heading").textContent=favoriteMode?"Your favorites":"Explore tools";
+ $("subheading").textContent=favoriteMode?"Your saved tools in one place.":"Everything you need, neatly organized.";
+ $("total").textContent=list.length+" TOOLS";
+ $("grid").innerHTML=list.length?list.map(t=>`
+ <article class="tool-card" onclick="openTool('${t.id}')">
+  <button class="tool-star ${favorites.includes(t.id)?"active":""}" aria-label="Favorite" onclick="event.stopPropagation();toggleFavorite('${t.id}')">${favorites.includes(t.id)?"★":"☆"}</button>
+  <div class="tool-icon">${t.icon}</div>
+  <h3>${t.name}</h3>
+  <p>${t.desc}</p>
+ </article>`).join(""):`<div class="empty"><strong>No tools found</strong>Try a different search or category.</div>`;
+ renderCategories();
 }
-
-function setCategory(c,btn){
- category=c;favOnly=false;
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
- btn.classList.add("active");renderGames();
+function setCategory(c){
+ activeCat=c;favoriteMode=false;render();
 }
-function toggleFav(id){
+function toggleFavorite(id){
  favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
- localStorage.setItem("urgames-favs",JSON.stringify(favorites));
- renderGames();
+ localStorage.setItem("ot-favorites",JSON.stringify(favorites));render();
 }
 function showFavorites(){
- favOnly=true;category="All";
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
- renderGames();
- document.getElementById("games").scrollIntoView({behavior:"smooth"});
+ favoriteMode=!favoriteMode;
+ activeCat="All";render();
+ $("grid").scrollIntoView({behavior:"smooth",block:"center"});
 }
-function closeGame(){document.getElementById("modal").classList.remove("show")}
-function openGame(title,html){
- document.getElementById("gameTitle").textContent=title;
- document.getElementById("gameArea").innerHTML=html;
- document.getElementById("modal").classList.add("show");
+$("search").addEventListener("input",render);
+
+function toggleTheme(){
+ document.body.classList.toggle("dark");
+ let dark=document.body.classList.contains("dark");
+ $("themeBtn").textContent=dark?"☀":"☾";
+ localStorage.setItem("ot-theme",dark?"dark":"light");
 }
-function playGame(id){
- if(id===1)ticTacToe();
- if(id===2)memoryGame();
- if(id===3)guessGame();
- if(id===4)reactionGame();
- if(id===5)rpsGame();
- if(id===6)clickGame();
+if(localStorage.getItem("ot-theme")==="dark"){
+ document.body.classList.add("dark");$("themeBtn").textContent="☀";
 }
 
-// TIC TAC TOE
-function ticTacToe(){
- let board=Array(9).fill("");
- let turn="X",done=false;
- openGame("Tic Tac Toe",`<p>Take turns. Get three in a row!</p><div class="cells" id="cells"></div><p id="status">Player X's turn</p><button onclick="ticTacToe()">Restart</button>`);
- function draw(){
-  document.getElementById("cells").innerHTML=board.map((v,i)=>`<button onclick="move(${i})">${v}</button>`).join("");
+function closeTool(){
+ $("modal").classList.remove("open");
+ currentTool=null;
+}
+$("modal").addEventListener("click",e=>{
+ if(e.target===$("modal"))closeTool();
+});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closeTool();
+});
+
+function openTool(id){
+ let t=tools.find(x=>x.id===id);if(!t)return;
+ currentTool=id;
+ $("modalIcon").textContent=t.icon;
+ $("modalTitle").textContent=t.name;
+ $("toolContent").innerHTML=getToolHTML(id);
+ $("modal").classList.add("open");
+ initTool(id);
+}
+
+function getToolHTML(id){
+ const text=`<label>Enter your text</label><textarea id="txt" placeholder="Type or paste something here..."></textarea>`;
+ switch(id){
+ case "word":return text+`
+ <div class="result">
+  <div class="stat">Words <b id="words">0</b></div>
+  <div class="stat">Characters <b id="chars">0</b></div>
+  <div class="stat">Characters (without spaces) <b id="chars2">0</b></div>
+  <div class="stat">Sentences <b id="sentences">0</b></div>
+  <div class="stat">Lines <b id="lines">0</b></div>
+ </div>`;
+ case "case":return text+`<div class="actions">
+ <button class="btn primary" onclick="changeCase('upper')">UPPERCASE</button>
+ <button class="btn" onclick="changeCase('lower')">lowercase</button>
+ <button class="btn" onclick="changeCase('title')">Title Case</button>
+ <button class="btn" onclick="changeCase('sentence')">Sentence case</button>
+ </div>`;
+ case "remove":return text+`<div class="actions"><button class="btn primary" onclick="cleanText()">Remove extra spaces</button><button class="btn" onclick="cleanLines()">Remove empty lines</button></div>`;
+ case "reverse":return text+`<div class="actions"><button class="btn primary" onclick="reverseText()">Reverse text</button></div><div class="result" id="result"></div>`;
+ case "duplicate":return text+`<div class="actions"><button class="btn primary" onclick="findDuplicates()">Find duplicates</button></div><div class="result" id="result"></div>`;
+ case "calc":return `<label>Enter calculation</label><input class="field" id="expression" placeholder="Example: 25 * 4 + 10"><div class="actions"><button class="btn primary" onclick="calculate()">Calculate</button></div><div class="result" id="result">Your answer will appear here.</div><p class="muted">Supports +, -, ×, ÷, brackets and decimals.</p>`;
+ case "percent":return `<label>What is the percentage?</label><input class="field" type="number" id="percent" placeholder="Example: 20"><label>Of what number?</label><input class="field" type="number" id="ofnum" placeholder="Example: 500"><div class="actions"><button class="btn primary" onclick="percentage()">Calculate</button></div><div class="result" id="result"></div>`;
+ case "unit":return `<label>Conversion type</label><select id="unitType" class="field"><option value="km">Kilometers → Miles</option><option value="mi">Miles → Kilometers</option><option value="kg">Kilograms → Pounds</option><option value="lb">Pounds → Kilograms</option><option value="cm">Centimeters → Inches</option><option value="in">Inches → Centimeters</option><option value="c">Celsius → Fahrenheit</option><option value="f">Fahrenheit → Celsius</option></select><label>Value</label><input class="field" id="unitValue" type="number" placeholder="Enter value"><div class="actions"><button class="btn primary" onclick="convertUnit()">Convert</button></div><div class="result" id="result"></div>`;
+ case "json":return `<label>JSON input</label><textarea id="jsonInput" placeholder='{"name":"John","age":20}'></textarea><div class="actions"><button class="btn primary" onclick="formatJSON()">Format JSON</button><button class="btn" onclick="minifyJSON()">Minify</button></div><div class="result" id="result"></div>`;
+ case "base64":return text+`<div class="actions"><button class="btn primary" onclick="baseConvert(true)">Encode</button><button class="btn" onclick="baseConvert(false)">Decode</button></div><div class="result" id="result"></div>`;
+ case "url":return text+`<div class="actions"><button class="btn primary" onclick="urlConvert(true)">Encode URL</button><button class="btn" onclick="urlConvert(false)">Decode URL</button></div><div class="result" id="result"></div>`;
+ case "html":return `<label>Write HTML</label><textarea id="htmlCode" placeholder="<h1>Hello World</h1>"></textarea><div class="actions"><button class="btn primary" onclick="previewHTML()">Preview HTML</button></div><iframe id="htmlFrame" sandbox="" style="width:100%;height:180px;border:1px solid var(--border);border-radius:10px;margin-top:15px;background:white"></iframe>`;
+ case "color":return `<label>Choose a color</label><input type="color" id="colorInput" value="#6755df"><div class="result" id="colorResult">#6755DF</div><div class="actions"><button class="btn primary" onclick="copyText($('colorInput').value)">Copy HEX</button></div>`;
+ case "gradient":return `<label>First color</label><input type="color" id="grad1" value="#6755df"><label>Second color</label><input type="color" id="grad2" value="#e08adf"><label>Direction</label><select class="field" id="gradDir"><option value="to right">Left to Right</option><option value="to bottom">Top to Bottom</option><option value="135deg">Diagonal</option></select><div id="gradPreview" style="height:110px;border-radius:12px;margin-top:15px"></div><div class="result" id="gradCode"></div><button class="btn primary" onclick="copyText($('gradCode').textContent)">Copy CSS</button>`;
+ case "image":case "compress":return `<label>Select an image</label><input class="field" id="imageFile" type="file" accept="image/*"><label>Width (pixels)</label><input class="field" id="imageWidth" type="number" placeholder="Original width"><label>Height (pixels)</label><input class="field" id="imageHeight" type="number" placeholder="Original height"><label>Output format</label><select class="field" id="imageFormat"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select><label>Quality (JPEG / WebP)</label><input class="field" id="imageQuality" type="range" min=".1" max="1" step=".05" value=".85"><div id="imageInfo" class="muted">Choose an image to begin.</div><img id="imagePreview" class="preview" style="display:none;max-height:180px"><div class="actions"><button class="btn primary" onclick="processImage()">Process & Download</button></div>`;
+ case "qr":return `<label>Text or URL</label><input class="field" id="qrText" placeholder="https://example.com"><div class="actions"><button class="btn primary" onclick="makeQR()">Generate QR</button></div><div id="qrResult" class="result" style="text-align:center"></div>`;
+ case "stopwatch":return `<div class="big-time" id="clock" style="font-size:45px;text-align:center;font-weight:800;padding:35px 0">00:00.00</div><div class="actions" style="justify-content:center"><button class="btn primary" id="startWatch" onclick="watchStart()">Start</button><button class="btn" onclick="watchReset()">Reset</button></div>`;
+ case "timer":return `<label>Minutes</label><input class="field" type="number" id="timerMinutes" value="1" min="0"><label>Seconds</label><input class="field" type="number" id="timerSeconds" value="0" min="0" max="59"><div class="big-time" id="timerDisplay" style="font-size:40px;text-align:center;padding:25px">01:00</div><div class="actions"><button class="btn primary" onclick="timerStart()">Start</button><button class="btn" onclick="timerStop()">Stop</button><button class="btn" onclick="timerReset()">Reset</button></div>`;
+ case "password":return `<label>Password length</label><input class="field" type="number" id="passLength" value="16" min="4" max="64"><label><input type="checkbox" id="passNumbers" checked> Include numbers</label><label><input type="checkbox" id="passSymbols" checked> Include symbols</label><div class="actions"><button class="btn primary" onclick="generatePassword()">Generate</button></div><div class="result" id="result">Your password will appear here.</div><button class="btn" onclick="copyText($('result').textContent)">Copy password</button>`;
+ case "date":return `<label>Your date of birth</label><input class="field" type="date" id="birthDate"><div class="actions"><button class="btn primary" onclick="calculateAge()">Calculate age</button></div><div class="result" id="result"></div>`;
+ case "lorem":return `<label>Number of paragraphs</label><input class="field" type="number" id="loremCount" value="3" min="1" max="20"><div class="actions"><button class="btn primary" onclick="generateLorem()">Generate text</button></div><div class="result" id="result"></div>`;
+ default:return `<p class="muted">Tool unavailable.</p>`;
  }
- window.move=i=>{
-  if(board[i]||done)return;
-  board[i]=turn;
-  let wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-  let win=wins.some(a=>a.every(n=>board[n]===turn));
-  if(win){done=true;document.getElementById("status").textContent=turn+" wins! 🎉";}
-  else if(board.every(Boolean)){done=true;document.getElementById("status").textContent="It's a draw!";}
-  else {turn=turn==="X"?"O":"X";document.getElementById("status").textContent="Player "+turn+"'s turn";}
-  draw();
- };
- draw();
 }
 
-// MEMORY MATCH
-function memoryGame(){
- let values=["🍎","🍌","🍇","🍉","🍓","🍒","🥝","🍍"];
- let cards=[...values,...values].sort(()=>Math.random()-.5);
- let open=[],matched=[],locked=false;
- openGame("Memory Match",`<p>Find all 8 matching pairs!</p><div class="memory" id="memory"></div><p id="memoryStatus">Pairs: 0 / 8</p><button onclick="memoryGame()">Restart</button>`);
- const area=document.getElementById("memory");
- cards.forEach((v,i)=>{
-  let b=document.createElement("button");
-  b.textContent="❔";
-  b.onclick=()=>{
-   if(locked||matched.includes(i)||open.includes(i))return;
-   b.textContent=v;open.push(i);
-   if(open.length===2){
-    locked=true;
-    if(cards[open[0]]===cards[open[1]]){
-     matched.push(...open);open=[];locked=false;
-     document.getElementById("memoryStatus").textContent="Pairs: "+matched.length/2+" / 8";
-     if(matched.length===16)document.getElementById("memoryStatus").textContent="You won! 🎉";
-    }else{
-     setTimeout(()=>{
-      open.forEach(n=>area.children[n].textContent="❔");
-      open=[];locked=false;
-     },750);
-    }
-   }
-  };
-  area.appendChild(b);
+function initTool(id){
+ if(id==="word")$("txt").addEventListener("input",()=>{
+  let v=$("txt").value;
+  $("words").textContent=v.trim()?v.trim().split(/\s+/).length:0;
+  $("chars").textContent=v.length;
+  $("chars2").textContent=v.replace(/\s/g,"").length;
+  $("sentences").textContent=(v.match(/[.!?]+/g)||[]).length;
+  $("lines").textContent=v?v.split("\n").length:0;
  });
+ if(id==="color")$("colorInput").addEventListener("input",()=>{
+  $("colorResult").textContent=$("colorInput").value.toUpperCase();
+  $("colorResult").style.borderLeft="8px solid "+$("colorInput").value;
+ });
+ if(id==="gradient"){
+  ["grad1","grad2","gradDir"].forEach(x=>$(x).addEventListener("input",updateGradient));
+  updateGradient();
+ }
+ if(id==="image"||id==="compress")$("imageFile").addEventListener("change",loadImage);
+ if(id==="qr")loadQRLibrary();
 }
 
-// NUMBER GUESS
-function guessGame(){
- let secret=Math.floor(Math.random()*100)+1,tries=0;
- openGame("Number Guess",`<p>Guess a number between 1 and 100.</p>
- <input id="guess" type="number" min="1" max="100" placeholder="Your guess">
- <button onclick="checkGuess()">GUESS</button>
- <div class="big">🔢</div><p id="guessStatus">You have unlimited tries!</p>
- <button onclick="guessGame()">New Game</button>`);
- window.checkGuess=()=>{
-  let n=Number(document.getElementById("guess").value);
-  if(!Number.isInteger(n)||n<1||n>100){document.getElementById("guessStatus").textContent="Enter a number from 1 to 100.";return}
-  tries++;
-  document.getElementById("guessStatus").textContent=n===secret?"Correct! 🎉 Tries: "+tries:n<secret?"Too low! Try higher.":"Too high! Try lower.";
+function changeCase(type){
+ let el=$("txt"),v=el.value;
+ if(type==="upper")v=v.toUpperCase();
+ if(type==="lower")v=v.toLowerCase();
+ if(type==="title")v=v.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+ if(type==="sentence")v=v.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g,c=>c.toUpperCase());
+ el.value=v;el.dispatchEvent(new Event("input"));
+}
+function cleanText(){$("txt").value=$("txt").value.replace(/[ \t]+/g," ").trim()}
+function cleanLines(){$("txt").value=$("txt").value.split("\n").filter(x=>x.trim()).join("\n")}
+function reverseText(){$("result").textContent=Array.from($("txt").value).reverse().join("")}
+function findDuplicates(){
+ let lines=$("txt").value.split("\n"),seen=new Set(),dups=[];
+ lines.forEach(x=>{if(seen.has(x)&&x.trim())dups.push(x);seen.add(x)});
+ $("result").textContent=dups.length?"Duplicates:\n"+dups.join("\n"):"No duplicate lines found.";
+}
+
+function calculate(){
+ let s=$("expression").value.trim();
+ if(!s){$("result").textContent="Enter a calculation.";return}
+ if(!/^[0-9+\-*/().%\s]+$/.test(s)){$("result").textContent="Invalid expression.";return}
+ try{
+  let result=Function('"use strict";return ('+s.replace(/%/g,"/100") +')')();
+  $("result").textContent=Number.isFinite(result)?String(result):"Invalid calculation.";
+ }catch(e){$("result").textContent="Please check your expression."}
+}
+function percentage(){
+ let p=Number($("percent").value),n=Number($("ofnum").value);
+ if(!$("percent").value||!$("ofnum").value)return;
+ $("result").textContent=p+"% of "+n+" = "+(p/100*n);
+}
+function convertUnit(){
+ let n=Number($("unitValue").value),type=$("unitType").value;
+ if(!$("unitValue").value)return;
+ let f={km:n=>n*.621371,mi:n=>n*1.60934,kg:n=>n*2.20462,lb:n=>n*.453592,cm:n=>n*.393701,in:n=>n*2.54,c:n=>n*9/5+32,f:n=>(n-32)*5/9};
+ $("result").textContent="Result: "+f[type](n).toLocaleString(undefined,{maximumFractionDigits:5});
+}
+function formatJSON(){
+ try{$("result").textContent=JSON.stringify(JSON.parse($("jsonInput").value),null,2)}
+ catch(e){$("result").textContent="Invalid JSON: "+e.message}
+}
+function minifyJSON(){
+ try{$("result").textContent=JSON.stringify(JSON.parse($("jsonInput").value))}
+ catch(e){$("result").textContent="Invalid JSON: "+e.message}
+}
+function baseConvert(encode){
+ try{
+  let s=$("txt").value;
+  $("result").textContent=encode?btoa(unescape(encodeURIComponent(s))):decodeURIComponent(escape(atob(s.trim())));
+ }catch(e){$("result").textContent="Invalid input."}
+}
+function urlConvert(encode){
+ try{$("result").textContent=encode?encodeURIComponent($("txt").value):decodeURIComponent($("txt").value)}
+ catch(e){$("result").textContent="Invalid URL encoded text."}
+}
+function previewHTML(){
+ $("htmlFrame").srcdoc=$("htmlCode").value;
+}
+function copyText(text){
+ if(!text)return;
+ navigator.clipboard?.writeText(text).then(()=>alert("Copied!")).catch(()=>alert("Copy not available. Select and copy manually."));
+}
+function updateGradient(){
+ let code=`linear-gradient(${$("gradDir").value}, ${$("grad1").value}, ${$("grad2").value})`;
+ $("gradPreview").style.background=code;
+ $("gradCode").textContent="background: "+code+";";
+}
+
+let selectedImage=null;
+function loadImage(){
+ let file=$("imageFile").files[0];if(!file)return;
+ let url=URL.createObjectURL(file);
+ let img=new Image();
+ img.onload=()=>{
+  selectedImage=img;
+  $("imageWidth").value=img.width;
+  $("imageHeight").value=img.height;
+  $("imageInfo").textContent=`Original: ${img.width} × ${img.height} | ${(file.size/1024).toFixed(1)} KB`;
+  $("imagePreview").src=url;$("imagePreview").style.display="block";
  };
+ img.src=url;
+}
+function processImage(){
+ if(!selectedImage){$("imageInfo").textContent="Please choose an image first.";return}
+ let w=Number($("imageWidth").value),h=Number($("imageHeight").value);
+ if(!w||!h||w>10000||h>10000){$("imageInfo").textContent="Enter valid dimensions (maximum 10000).";return}
+ let canvas=document.createElement("canvas");
+ canvas.width=w;canvas.height=h;
+ canvas.getContext("2d").drawImage(selectedImage,0,0,w,h);
+ let format=$("imageFormat").value;
+ canvas.toBlob(blob=>{
+  if(!blob)return;
+  let a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="our-tools-image."+({ "image/png":"png","image/jpeg":"jpg","image/webp":"webp"}[format]);
+  a.click();URL.revokeObjectURL(a.href);
+  $("imageInfo").textContent="Done! Your image is ready.";
+ },format,Number($("imageQuality").value));
 }
 
-// REACTION TEST
-function reactionGame(){
- let state="ready",start=0,timer;
- openGame("Reaction Test",`<p>Wait until the box turns green, then click!</p>
- <button id="react" style="width:90%;height:130px;background:#713eae;font-size:19px" onclick="reactClick()">START</button>
- <p id="reactionStatus">Click START to begin.</p>`);
- window.reactClick=()=>{
-  let b=document.getElementById("react");
-  if(state==="ready"){
-   state="waiting";b.textContent="WAIT...";b.style.background="#b45309";
-   document.getElementById("reactionStatus").textContent="Don't click yet!";
-   timer=setTimeout(()=>{
-    state="go";start=performance.now();
-    b.textContent="CLICK NOW!";b.style.background="#16a34a";
-   },1000+Math.random()*3000);
-  }else if(state==="waiting"){
-   clearTimeout(timer);state="ready";
-   b.textContent="TOO EARLY! Try again";b.style.background="#713eae";
-   document.getElementById("reactionStatus").textContent="Wait for green!";
-  }else if(state==="go"){
-   let time=Math.round(performance.now()-start);state="ready";
-   b.textContent="PLAY AGAIN";b.style.background="#713eae";
-   document.getElementById("reactionStatus").textContent="Your reaction time: "+time+" ms";
+function loadQRLibrary(){
+ if(window.QRCode)return;
+ let s=document.createElement("script");
+ s.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+ s.onerror=()=>{$("qrResult").textContent="QR library could not load. Check your internet connection."};
+ document.head.appendChild(s);
+}
+function makeQR(){
+ let value=$("qrText").value.trim();
+ if(!value)return;
+ if(!window.QRCode){$("qrResult").textContent="Loading QR generator... Try again in a moment.";loadQRLibrary();return}
+ $("qrResult").innerHTML="";
+ let box=document.createElement("div");
+ box.style.display="flex";box.style.justifyContent="center";
+ $("qrResult").appendChild(box);
+ new QRCode(box,{text:value,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});
+ setTimeout(()=>{
+  let img=box.querySelector("img");
+  if(img){
+   let b=document.createElement("button");b.className="btn primary";b.textContent="Download QR";
+   b.onclick=()=>{let a=document.createElement("a");a.href=img.src;a.download="our-tools-qr.png";a.click()};
+   $("qrResult").appendChild(b);
   }
- };
+ },300);
 }
 
-// ROCK PAPER SCISSORS
-function rpsGame(){
- openGame("Rock Paper Scissors",`<p>Choose your move!</p><div class="big">✊ ✋ ✌️</div>
- <button onclick="rps('Rock')">✊ Rock</button>
- <button onclick="rps('Paper')">✋ Paper</button>
- <button onclick="rps('Scissors')">✌️ Scissors</button>
- <p id="rpsResult">Ready to play?</p>`);
- window.rps=you=>{
-  let choices=["Rock","Paper","Scissors"];
-  let cpu=choices[Math.floor(Math.random()*3)];
-  let result=you===cpu?"Draw!":(
-   (you==="Rock"&&cpu==="Scissors")||
-   (you==="Paper"&&cpu==="Rock")||
-   (you==="Scissors"&&cpu==="Paper")?"You win! 🎉":"Computer wins!"
-  );
-  document.getElementById("rpsResult").textContent="You: "+you+" | Computer: "+cpu+" — "+result;
- };
+let watchInterval=null,watchStartTime=0,watchElapsed=0;
+function watchStart(){
+ if(watchInterval){clearInterval(watchInterval);watchInterval=null;$("startWatch").textContent="Resume";return}
+ watchStartTime=Date.now()-watchElapsed;
+ watchInterval=setInterval(()=>{
+  watchElapsed=Date.now()-watchStartTime;
+  let m=Math.floor(watchElapsed/60000),s=Math.floor(watchElapsed%60000/1000),cs=Math.floor(watchElapsed%1000/10);
+  $("clock").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+"."+String(cs).padStart(2,"0");
+ },40);
+ $("startWatch").textContent="Pause";
 }
-
-// CLICK CHALLENGE
-function clickGame(){
- let clicks=0,remaining=10,active=false,interval;
- openGame("Click Challenge",`<p>Click as fast as possible in 10 seconds!</p>
- <div class="big" id="clickScore">0</div>
- <button id="clickButton" style="font-size:20px;padding:20px 35px" onclick="countClick()">START</button>
- <p id="clickTime">Time: 10s</p>`);
- window.countClick=()=>{
-  if(!active){
-   clicks=0;remaining=10;active=true;
-   document.getElementById("clickButton").textContent="CLICK!";
-   interval=setInterval(()=>{
-    remaining--;
-    document.getElementById("clickTime").textContent="Time: "+remaining+"s";
-    if(remaining<=0){
-     clearInterval(interval);active=false;
-     document.getElementById("clickButton").textContent="PLAY AGAIN";
-     document.getElementById("clickTime").textContent="Finished! Your score: "+clicks;
-    }
-   },1000);
-   return;
-  }
-  clicks++;
-  document.getElementById("clickScore").textContent=clicks;
- };
+function watchReset(){
+ clearInterval(watchInterval);watchInterval=null;watchElapsed=0;
+ $("clock").textContent="00:00.00";$("startWatch").textContent="Start";
 }
-
-renderGames();
+let timerInterval=null,timerRemaining=60;
+function timerDisplay(){
+ $("timerDisplay").textContent=String(Math.floor(timerRemaining/60)).padStart(2,"0")+":"+String(timerRemaining%60).padStart(2,"0");
+}
+function timerStart(){
+ if(timerInterval)return;
+ if(timerRemaining<=0)timerRemaining=Number($("timerMinutes").value)*60+Number($("timerSeconds").value);
+ if(!timerRemaining)return;
+ timerInterval=setInterval(()=>{
+  timerRemaining--;timerDisplay();
+  if(timerRemaining<=0){timerStop();alert("Timer finished!")}
+ },1000);
+}
+function timerStop(){clearInterval(timerInterval);timerInterval=null}
+function timerReset(){
+ timerStop();timerRemaining=Math.max(0,Number($("timerMinutes").value)*60+Number($("timerSeconds").value));timerDisplay();
+}
+function generatePassword(){
+ let len=Math.max(4,Math.min(64,Number($("passLength").value)||16));
+ let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ if($("passNumbers").checked)chars+="0123456789";
+ if($("passSymbols").checked)chars+="!@#$%^&*_-+=";
+ let out="";
+ let values=new Uint32Array(len);crypto.getRandomValues(values);
+ for(let n of values)out+=chars[n%chars.length];
+ $("result").textContent=out;
+}
+function calculateAge(){
+ let d=new Date($("birthDate").value+"T00:00:00");
+ if(!$("birthDate").value||isNaN(d.getTime())||d>new Date()){$("result").textContent="Enter a valid date of birth.";return}
+ let now=new Date();let age=now.getFullYear()-d.getFullYear();
+ let before=now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate());
+ if(before)age--;
+ $("result").textContent="Your age is "+age+" years.";
+}
+function generateLorem(){
+ let p=["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.","Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."];
+ let count=Math.max(1,Math.min(20,Number($("loremCount").value)||1));
+ $("result").textContent=Array.from({length:count},(_,i)=>p[i%p.length]).join("\n\n");
+}
+render();
 </script>
 </body>
 </html>
